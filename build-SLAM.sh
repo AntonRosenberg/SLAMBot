@@ -1,8 +1,16 @@
 #!/bin/bash
 
-if [ -d "./SLAM/build" ]; then
-  rm -r ./SLAM/build
+BUILD_DIR=./SLAM/build
+if [ -d "$BUILD_DIR" ]; then
+  rm -r $BUILD_DIR
 fi
-mkdir ./SLAM/build && cd ./SLAM/build && cmake .. && make
+mkdir $BUILD_DIR && cd $BUILD_DIR && cmake .. && make && cd ../..
+
+if [ ! -L "run_slam" ]; then
+	target_file="$BUILD_DIR/run_slam"
+	ln -s $target_file
+fi
+echo "Symlink created: run_slam -> $target_file"
+
 exit 0
 
