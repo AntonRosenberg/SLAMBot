@@ -9,8 +9,8 @@ mkdir $BUILD_DIR && cd $BUILD_DIR && cmake .. && make && cd ../..
 if [ ! -L "run_slam" ]; then
 	target_file="$BUILD_DIR/run_slam"
 	ln -s $target_file
+	echo "Symlink created: run_slam -> $target_file"
 fi
-echo "Symlink created: run_slam -> $target_file"
 
 exit 0
 
